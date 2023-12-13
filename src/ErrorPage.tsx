@@ -1,8 +1,14 @@
+import { Button } from '@mui/material';
 import React from 'react';
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import {
+  isRouteErrorResponse,
+  useNavigate,
+  useRouteError,
+} from 'react-router-dom';
 
 export default function ErrorPage() {
   const error: unknown = useRouteError();
+  const navigate = useNavigate();
 
   if (isRouteErrorResponse(error)) {
     return (
@@ -13,6 +19,11 @@ export default function ErrorPage() {
           <i>
             {error.status}: {error.statusText}
           </i>
+        </p>
+        <p>
+          <Button variant="contained" onClick={() => navigate(-1)}>
+            Go back
+          </Button>
         </p>
       </div>
     );

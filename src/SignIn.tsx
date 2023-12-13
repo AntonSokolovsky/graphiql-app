@@ -1,9 +1,17 @@
-function SignIn() {
+import { FC } from 'react';
+
+type TSignInProps = {
+  action: string;
+};
+
+const SignIn: FC<TSignInProps> = ({ action }): React.JSX.Element => {
   return (
     <>
-      <div>Sign in/sign up component will be here</div>
+      <div>
+        <h2>{action}</h2> <p>Sign in/sign up component will be here.</p>
+      </div>
     </>
   );
-}
+};
 
 export default SignIn;

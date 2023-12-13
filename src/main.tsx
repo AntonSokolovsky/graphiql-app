@@ -6,6 +6,7 @@ import './index.css';
 import ErrorPage from './ErrorPage';
 import SignIn from './SignIn';
 import GraphiQL from './GraphiQL';
+import PrivateRoute from './components/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -15,13 +16,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/sign-in',
-        element: <SignIn />,
+        element: <SignIn action="sign-in" />,
+      },
+      {
+        path: '/sign-up',
+        element: <SignIn action="sign-up" />,
       },
     ],
   },
   {
     path: '/main',
-    element: <GraphiQL />,
+    element: <PrivateRoute component={GraphiQL} />,
   },
 ]);
 
