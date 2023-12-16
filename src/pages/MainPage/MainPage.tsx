@@ -1,9 +1,7 @@
-function GraphiQL() {
+export default function MainPage() {
   return (
     <>
       <div>GraphiQL page</div>
     </>
   );
 }
-
-export default GraphiQL;

@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { Link, Outlet } from 'react-router-dom';
 
-function Welcome() {
+export default function Welcome() {
   return (
     <>
       <div>Welcome</div>
@@ -17,5 +17,3 @@ function Welcome() {
     </>
   );
 }
-
-export default Welcome;

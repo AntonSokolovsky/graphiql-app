@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import React from 'react';
 import {
   isRouteErrorResponse,
   useNavigate,
@@ -28,6 +27,6 @@ export default function ErrorPage() {
       </div>
     );
   } else {
-    return <></>;
+    return null;
   }
 }
