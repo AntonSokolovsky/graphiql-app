@@ -22,6 +22,6 @@
     ],
     "types": ["vitest/globals"]
   },
-  "include": ["src"],
+  "include": ["src", "src/assets/svg/graphQl-icon.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
