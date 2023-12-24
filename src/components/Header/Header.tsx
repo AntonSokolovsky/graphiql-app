@@ -1,15 +1,12 @@
-import { LoginOutlined } from '@mui/icons-material';
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import Nav from '../NavBar/NavBar';
 
 export default function Header() {
   return (
-    <AppBar>
-      <Toolbar>
-        <Typography>GraphiQL App</Typography>
-        <IconButton>
-          <LoginOutlined></LoginOutlined>
-        </IconButton>
-      </Toolbar>
-    </AppBar>
+    <>
+      <Box component={'header'}>
+        <Nav />
+      </Box>
+    </>
   );
 }

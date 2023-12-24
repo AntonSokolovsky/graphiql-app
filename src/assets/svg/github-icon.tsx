@@ -1,6 +1,3 @@
-import { SvgIcon } from '@mui/material';
-import React from 'react';
-
 const GitHubIcon = () => {
   return (
     <svg

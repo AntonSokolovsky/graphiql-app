@@ -1,16 +1,19 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import { Box } from '@mui/material';
 
 export function Layout() {
   return (
     <>
-      <Header></Header>
+      <Header />
       <Suspense fallback={<div>Div</div>}>
-        <main>
+        <Box component={'main'}>
           <Outlet></Outlet>
-        </main>
+        </Box>
       </Suspense>
+      <Footer />
     </>
   );
 }

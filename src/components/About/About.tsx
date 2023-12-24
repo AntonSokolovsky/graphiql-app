@@ -1,6 +1,6 @@
 import { Box, Link, Typography } from '@mui/material';
-import { IPersonTeam } from '../../../interface';
-import GitHubIcon from '../../../assets/svg/github-icon';
+import { IPersonTeam } from '../../interface';
+import GitHubIcon from '../../assets/svg/github-icon';
 
 type Props = {
   data: IPersonTeam;

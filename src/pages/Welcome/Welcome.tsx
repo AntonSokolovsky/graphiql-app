@@ -1,16 +1,9 @@
-import { Outlet } from 'react-router-dom';
-import Nav from '../../components/AppBar';
-import Footer from '../../components/AppFooter';
-import WelcomeContent from '../../components/AppWelcomeContent';
+import WelcomeContent from '../../components/WelcomeContent/WelcomeContent';
 
 export default function Welcome() {
   return (
     <>
-      <Nav />
       <WelcomeContent />
-      <Outlet />
-
-      <Footer />
     </>
   );
 }

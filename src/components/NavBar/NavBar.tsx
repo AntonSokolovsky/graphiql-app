@@ -1,8 +1,14 @@
-import { AppBar, Box, Button, Link, Toolbar } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Link, Toolbar } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import NavIconQL from '../../assets/svg/graphQl-icon';
+import { DarkModeOutlined, LightModeOutlined } from '@mui/icons-material';
+import { useState } from 'react';
 
 function Nav() {
+  const [darkMode, setDarkMode] = useState(false);
+  function handleModeChange() {
+    darkMode ? setDarkMode(false) : setDarkMode(true);
+  }
   return (
     <AppBar component="nav" position="static">
       <Toolbar style={{ justifyContent: 'space-between' }}>
@@ -59,6 +65,9 @@ function Nav() {
             <Button variant="contained">Sign Up</Button>
           </NavLink>
         </Box>
+        <IconButton onClick={handleModeChange}>
+          {darkMode ? <LightModeOutlined /> : <DarkModeOutlined />}
+        </IconButton>
       </Toolbar>
     </AppBar>
   );

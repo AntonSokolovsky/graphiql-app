@@ -1,12 +1,11 @@
 import { Box, Container, Typography } from '@mui/material';
 import IconQL from '../../assets/svg/graphql';
-import About from './AppTeam';
 import { personsTeam } from '../../constants/welcome';
+import About from '../About/About';
 
 function WelcomeContent() {
   return (
     <Container
-      component="main"
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -24,16 +23,7 @@ function WelcomeContent() {
         }}
       >
         <Box component="div">
-          <Typography
-            component="h1"
-            style={{
-              fontFamily: 'Roboto, sans-serif',
-              fontSize: '2rem',
-              color: '#2c3849',
-              fontWeight: 700,
-              lineHeight: 1,
-            }}
-          >
+          <Typography component="h1" variant="h4">
             GraphiQL App
           </Typography>
           <Typography
