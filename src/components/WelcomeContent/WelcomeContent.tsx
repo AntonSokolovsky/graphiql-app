@@ -1,12 +1,12 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Stack, Typography } from '@mui/material';
 import IconQL from '../../assets/svg/graphql';
 import { personsTeam } from '../../constants/welcome';
-import About from '../About/About';
+import TeamMember from '../TeamMember/TeamMember';
 
 function WelcomeContent() {
   return (
     <Container
-      style={{
+      sx={{
         display: 'flex',
         flexDirection: 'column',
         gap: '80px',
@@ -16,7 +16,7 @@ function WelcomeContent() {
       <Box
         id="about"
         component="section"
-        style={{
+        sx={{
           display: 'flex',
           justifyContent: 'space-around',
           alignItems: 'center',
@@ -28,10 +28,10 @@ function WelcomeContent() {
           </Typography>
           <Typography
             component="p"
-            style={{
-              fontFamily: 'Roboto, sans-serif',
-              color: '#8d8d8d',
-              marginTop: '8px',
+            variant="body1"
+            color="grey"
+            sx={{
+              marginTop: '0.5rem',
             }}
           >
             GraphiQL is a playground/IDE for graphQL requests
@@ -41,11 +41,14 @@ function WelcomeContent() {
           <IconQL />
         </Box>
       </Box>
-      <Box id="team" component="section">
+      <Typography component="h1" variant="h3" color="gray" align={'center'}>
+        Our Team
+      </Typography>
+      <Stack id="team" component="section" spacing={2}>
         {personsTeam.map((person) => (
-          <About key={person.name} data={person} />
+          <TeamMember key={person.name} data={person} />
         ))}
-      </Box>
+      </Stack>
     </Container>
   );
 }

@@ -15,43 +15,28 @@ function Nav() {
         <NavIconQL />
         <Box component="div" style={{ display: 'flex', gap: '10px' }}>
           <Link
+            variant="h6"
             href="#"
-            style={{
+            sx={{
               color: 'white',
-              textDecoration: 'none',
-              fontFamily: 'Roboto,Helvetica,Arial,sans-serif',
-              fontWeight: '500',
-              fontSize: '1.25rem',
-              lineHeight: '1.6',
-              letterSpacing: '0.0075em',
             }}
           >
             Home
           </Link>
           <Link
+            variant="h6"
             href="#"
-            style={{
+            sx={{
               color: 'white',
-              textDecoration: 'none',
-              fontFamily: 'Roboto,Helvetica,Arial,sans-serif',
-              fontWeight: '500',
-              fontSize: '1.25rem',
-              lineHeight: '1.6',
-              letterSpacing: '0.0075em',
             }}
           >
             Team
           </Link>
           <Link
+            variant="h6"
             href="#"
-            style={{
+            sx={{
               color: 'white',
-              textDecoration: 'none',
-              fontFamily: 'Roboto,Helvetica,Arial,sans-serif',
-              fontWeight: '500',
-              fontSize: '1.25rem',
-              lineHeight: '1.6',
-              letterSpacing: '0.0075em',
             }}
           >
             About
