@@ -1,70 +1,82 @@
-import { Panel, PanelGroup } from 'react-resizable-panels';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { useState } from 'react';
 
-import ResizeHandle from '../../components/ResizeHandle/ResizeHandle';
 import styles from './styles.module.css';
 
 export default function MainPage() {
-  const [showFirstPanel, setShowFirstPanel] = useState(true);
-  const [showLastPanel, setShowLastPanel] = useState(true);
+  const [showDocumentation, setShowDocumentation] = useState(false);
 
   return (
     <div className={styles.Container}>
       <div className={styles.TopRow}>
-        <a
-          className={styles.Link}
-          href="https://github.com/bvaughn/react-resizable-panels"
-        >
-          github.com/bvaughn/react-resizable-panels
-        </a>
-
         <p>
           <button
             className={styles.Button}
-            onClick={() => setShowFirstPanel(!showFirstPanel)}
+            onClick={() => setShowDocumentation(!showDocumentation)}
           >
-            {showFirstPanel ? 'hide' : 'show'} top panel
-          </button>
-          &nbsp;
-          <button
-            className={styles.Button}
-            onClick={() => setShowLastPanel(!showLastPanel)}
-          >
-            {showLastPanel ? 'hide' : 'show'} bottom panel
+            {showDocumentation ? 'hide' : 'show'} documentation
           </button>
         </p>
       </div>
       <div className={styles.BottomRow}>
-        <PanelGroup autoSaveId="example" direction="horizontal">
-          {showFirstPanel && (
+        <PanelGroup direction="horizontal">
+          {showDocumentation && (
             <>
               <Panel
                 className={styles.Panel}
-                collapsible={true}
+                collapsible={false}
                 defaultSize={20}
                 order={1}
+                minSize={10}
               >
-                <div className={styles.PanelContent}>top</div>
+                <div className={styles.PanelContent}>documentation</div>
               </Panel>
-              <ResizeHandle />
+              <PanelResizeHandle className={styles.ResizeHandleOuter} />
             </>
           )}
-          <Panel className={styles.Panel} collapsible={true} order={2}>
-            <div className={styles.PanelContent}>middle</div>
+          <Panel
+            className={styles.Panel}
+            collapsible={false}
+            defaultSize={50}
+            order={2}
+            minSize={10}
+          >
+            <div className={styles.PanelContent}>
+              <PanelGroup direction="vertical">
+                <Panel
+                  className={styles.Panel}
+                  collapsible={false}
+                  defaultSize={80}
+                  order={3}
+                  minSize={10}
+                >
+                  <div className={styles.PanelContent}>Query editor</div>
+                </Panel>
+                <PanelResizeHandle className={styles.ResizeHandleInner} />
+                <Panel
+                  className={styles.Panel}
+                  collapsible={false}
+                  defaultSize={20}
+                  order={3}
+                  minSize={10}
+                >
+                  <div className={styles.PanelContent}>
+                    Variable/Headers editor
+                  </div>
+                </Panel>
+              </PanelGroup>
+            </div>
           </Panel>
-          {showLastPanel && (
-            <>
-              <ResizeHandle />
-              <Panel
-                className={styles.Panel}
-                collapsible={true}
-                defaultSize={20}
-                order={3}
-              >
-                <div className={styles.PanelContent}>bottom</div>
-              </Panel>
-            </>
-          )}
+          <PanelResizeHandle className={styles.ResizeHandleOuter} />
+          <Panel
+            className={styles.Panel}
+            collapsible={false}
+            defaultSize={50}
+            order={3}
+            minSize={10}
+          >
+            <div className={styles.PanelContent}>Response view</div>
+          </Panel>
         </PanelGroup>
       </div>
     </div>
