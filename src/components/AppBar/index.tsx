@@ -22,7 +22,7 @@ function Nav() {
         </Box>
         <Box className={styles.wrapper} component="div">
           {token ? (
-            <NavLink to="sign-in">
+            <NavLink to="main">
               <Button variant="contained">Main Page</Button>
             </NavLink>
           ) : (

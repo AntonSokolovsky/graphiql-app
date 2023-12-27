@@ -1,6 +1,7 @@
 import { Box, Link, Typography } from '@mui/material';
 import { IPersonTeam } from '../../../interface';
 import GitHubIcon from '../../../assets/svg/github-icon';
+import styles from '../../../../src/components/AppWelcomeContent/AppTeam/styled.module.css';
 
 type Props = {
   data: IPersonTeam;
@@ -9,37 +10,12 @@ type Props = {
 function About({ data }: Props) {
   return (
     <Box component="div">
-      <Typography
-        component="h1"
-        style={{
-          fontSize: '3rem',
-          color: '#3F5069',
-          fontFamily: 'Roboto, sans-serif',
-          fontWeight: 400,
-          textAlign: 'center',
-        }}
-      >
+      <Typography className={styles.about_title} component="h1">
         Our Team
       </Typography>
-      <Box
-        component="div"
-        style={{
-          display: 'flex',
-          border: '1px solid #1976d2',
-          borderRadius: '8px',
-          overflow: 'hidden',
-        }}
-      >
+      <Box className={styles.about_container} component="div">
         <img src={data.image} width="200px" height="auto" />
-        <Box
-          component="div"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: '10px',
-          }}
-        >
+        <Box className={styles.about_description_wrapper} component="div">
           <Typography>{data.name}</Typography>
           <Typography>{data.stack}</Typography>
           <Typography>{data.text}</Typography>
