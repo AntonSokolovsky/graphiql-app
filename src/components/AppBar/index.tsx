@@ -1,63 +1,40 @@
 import { AppBar, Box, Button, Link, Toolbar } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import NavIconQL from '../../assets/svg/graphQl-icon';
+import styles from '../../../src/components/AppBar/styled.module.css';
 
 function Nav() {
+  const token = false;
   return (
     <AppBar component="nav" position="static">
-      <Toolbar style={{ justifyContent: 'space-between' }}>
+      <Toolbar className={styles.nav_container}>
         <NavIconQL />
-        <Box component="div" style={{ display: 'flex', gap: '10px' }}>
-          <Link
-            href="#"
-            style={{
-              color: 'white',
-              textDecoration: 'none',
-              fontFamily: 'Roboto,Helvetica,Arial,sans-serif',
-              fontWeight: '500',
-              fontSize: '1.25rem',
-              lineHeight: '1.6',
-              letterSpacing: '0.0075em',
-            }}
-          >
+        <Box className={styles.wrapper} component="div">
+          <Link className={styles.nav_link} href="#">
             Home
           </Link>
-          <Link
-            href="#"
-            style={{
-              color: 'white',
-              textDecoration: 'none',
-              fontFamily: 'Roboto,Helvetica,Arial,sans-serif',
-              fontWeight: '500',
-              fontSize: '1.25rem',
-              lineHeight: '1.6',
-              letterSpacing: '0.0075em',
-            }}
-          >
+          <Link className={styles.nav_link} href="#">
             Team
           </Link>
-          <Link
-            href="#"
-            style={{
-              color: 'white',
-              textDecoration: 'none',
-              fontFamily: 'Roboto,Helvetica,Arial,sans-serif',
-              fontWeight: '500',
-              fontSize: '1.25rem',
-              lineHeight: '1.6',
-              letterSpacing: '0.0075em',
-            }}
-          >
+          <Link className={styles.nav_link} href="#">
             About
           </Link>
         </Box>
-        <Box component="div" style={{ display: 'flex', gap: '10px' }}>
-          <NavLink to="sign-in">
-            <Button variant="contained">Sign In</Button>
-          </NavLink>
-          <NavLink to="sign-up">
-            <Button variant="contained">Sign Up</Button>
-          </NavLink>
+        <Box className={styles.wrapper} component="div">
+          {token ? (
+            <NavLink to="sign-in">
+              <Button variant="contained">Main Page</Button>
+            </NavLink>
+          ) : (
+            <>
+              <NavLink to="sign-in">
+                <Button variant="contained">Sign In</Button>
+              </NavLink>
+              <NavLink to="sign-up">
+                <Button variant="contained">Sign Up</Button>
+              </NavLink>
+            </>
+          )}
         </Box>
       </Toolbar>
     </AppBar>
