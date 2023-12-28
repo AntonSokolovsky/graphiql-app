@@ -1,0 +1,18 @@
+.nav_container {
+  justify-content: space-between;
+}
+
+.wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.nav_link {
+  color: #fff;
+  text-decoration: none;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+}

@@ -2,48 +2,17 @@ import { Box, Container, Typography } from '@mui/material';
 import IconQL from '../../assets/svg/graphql';
 import About from './AppTeam';
 import { personsTeam } from '../../constants/welcome';
+import styles from '../../../src/components/AppWelcomeContent/styled.module.css';
 
 function WelcomeContent() {
   return (
-    <Container
-      component="main"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '80px',
-        padding: '20px 0',
-      }}
-    >
-      <Box
-        id="about"
-        component="section"
-        style={{
-          display: 'flex',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}
-      >
+    <Container className={styles.welcome_container} component="main">
+      <Box id="about" className={styles.welcome_about} component="section">
         <Box component="div">
-          <Typography
-            component="h1"
-            style={{
-              fontFamily: 'Roboto, sans-serif',
-              fontSize: '2rem',
-              color: '#2c3849',
-              fontWeight: 700,
-              lineHeight: 1,
-            }}
-          >
+          <Typography className={styles.welcome_title} component="h1">
             GraphiQL App
           </Typography>
-          <Typography
-            component="p"
-            style={{
-              fontFamily: 'Roboto, sans-serif',
-              color: '#8d8d8d',
-              marginTop: '8px',
-            }}
-          >
+          <Typography className={styles.welcome_description} component="p">
             GraphiQL is a playground/IDE for graphQL requests
           </Typography>
         </Box>
