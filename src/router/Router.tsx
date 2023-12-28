@@ -1,8 +1,10 @@
 import { lazy } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute';
+import { Layout } from '../components/Layout';
+import { PAGES } from './pages';
+import { ACTION } from './action';
 
-//ToDo: replace import to lazy import. It is possible to change the way the private route is implemented
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const SignIn = lazy(() => import('../pages/SignIn/SignIn'));
 const ErrorPage = lazy(() => import('../pages/ErrorPage/ErrorPage'));
@@ -11,21 +13,29 @@ const Welcome = lazy(() => import('../pages/Welcome/Welcome'));
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Welcome />,
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/sign-in',
-        element: <SignIn action="sign-in" />,
+        index: true,
+        element: <Navigate to={`${PAGES.WELCOME.path}`} />,
       },
       {
-        path: '/sign-up',
-        element: <SignIn action="sign-up" />,
+        path: `${PAGES.WELCOME.path}`,
+        element: <Welcome />,
+      },
+      {
+        path: `${PAGES.SIGN_IN.path}`,
+        element: <SignIn action={ACTION.SIGN_IN} />,
+      },
+      {
+        path: `${PAGES.SIGN_UP.path}`,
+        element: <SignIn action={ACTION.SIGN_UP} />,
       },
     ],
   },
   {
-    path: 'main',
+    path: `${PAGES.MAIN.path}`,
     element: (
       <PrivateRoute>
         <MainPage />
