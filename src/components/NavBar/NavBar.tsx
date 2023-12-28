@@ -1,53 +1,40 @@
-import { AppBar, Box, Button, IconButton, Link, Toolbar } from '@mui/material';
+import { AppBar, Box, Button, IconButton, List, Toolbar } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import NavIconQL from '../../assets/svg/graphQl-icon';
 import { DarkModeOutlined, LightModeOutlined } from '@mui/icons-material';
 import { useState } from 'react';
+import { PAGES } from '../../router/pages';
+import NavItem from '../NavItem/NavItem';
 
-function Nav() {
+function NavBar() {
   const [darkMode, setDarkMode] = useState(false);
   function handleModeChange() {
-    darkMode ? setDarkMode(false) : setDarkMode(true);
+    setDarkMode((prev) => !prev);
   }
   return (
-    <AppBar component="nav" position="static">
-      <Toolbar style={{ justifyContent: 'space-between' }}>
+    <AppBar component="nav" position="sticky">
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
         <NavIconQL />
-        <Box component="div" style={{ display: 'flex', gap: '10px' }}>
-          <Link
-            variant="h6"
-            href="#"
-            sx={{
-              color: 'white',
-            }}
-          >
-            Home
-          </Link>
-          <Link
-            variant="h6"
-            href="#"
-            sx={{
-              color: 'white',
-            }}
-          >
-            Team
-          </Link>
-          <Link
-            variant="h6"
-            href="#"
-            sx={{
-              color: 'white',
-            }}
-          >
-            About
-          </Link>
-        </Box>
-        <Box component="div" style={{ display: 'flex', gap: '10px' }}>
-          <NavLink to="sign-in">
-            <Button variant="contained">Sign In</Button>
+        <List sx={{ display: 'flex', gap: '10px' }}>
+          <NavItem
+            name={PAGES.MAIN.name.toUpperCase()}
+            path={PAGES.MAIN.path}
+          />
+          <NavItem
+            name={PAGES.WELCOME.name.toUpperCase()}
+            path={PAGES.WELCOME.path}
+          />
+        </List>
+        <Box sx={{ display: 'flex', gap: '10px' }}>
+          <NavLink to={PAGES.SIGN_IN.path}>
+            <Button variant="contained">
+              {PAGES.SIGN_IN.name.toUpperCase()}
+            </Button>
           </NavLink>
-          <NavLink to="sign-up">
-            <Button variant="contained">Sign Up</Button>
+          <NavLink to={PAGES.SIGN_UP.path}>
+            <Button variant="contained">
+              {PAGES.SIGN_UP.name.toUpperCase()}
+            </Button>
           </NavLink>
         </Box>
         <IconButton onClick={handleModeChange}>
@@ -58,4 +45,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default NavBar;

@@ -4,7 +4,7 @@ import Nav from '../NavBar/NavBar';
 export default function Header() {
   return (
     <>
-      <Box component={'header'}>
+      <Box component={'header'} position="sticky">
         <Nav />
       </Box>
     </>

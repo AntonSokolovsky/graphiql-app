@@ -2,6 +2,8 @@ import { lazy } from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute';
 import { Layout } from '../components/Layout';
+import { PAGES } from './pages';
+import { ACTION } from './action';
 
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
 const SignIn = lazy(() => import('../pages/SignIn/SignIn'));
@@ -16,24 +18,24 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to={'/welcome'} />,
+        element: <Navigate to={`${PAGES.WELCOME.path}`} />,
       },
       {
-        path: '/welcome',
+        path: `${PAGES.WELCOME.path}`,
         element: <Welcome />,
       },
       {
-        path: '/sign-in',
-        element: <SignIn action="sign-in" />,
+        path: `${PAGES.SIGN_IN.path}`,
+        element: <SignIn action={ACTION.SIGN_IN} />,
       },
       {
-        path: '/sign-up',
-        element: <SignIn action="sign-up" />,
+        path: `${PAGES.SIGN_UP.path}`,
+        element: <SignIn action={ACTION.SIGN_UP} />,
       },
     ],
   },
   {
-    path: 'main',
+    path: `${PAGES.MAIN.path}`,
     element: (
       <PrivateRoute>
         <MainPage />
