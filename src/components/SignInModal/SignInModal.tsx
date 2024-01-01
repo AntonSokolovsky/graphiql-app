@@ -1,12 +1,23 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, logInWithEmailAndPassword } from '../../services/auth/firebase';
+import { useNavigate } from 'react-router-dom';
+import { PAGES } from '../../router/pages';
 
 export default function SignInModal() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) navigate(PAGES.MAIN.path);
+  }, [navigate, user]);
+
   const handlerSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    logInWithEmailAndPassword(email, password);
     const formData = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
     console.log({

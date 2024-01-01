@@ -1,5 +1,8 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { FormEvent, useState } from 'react';
+import { registerWithEmailAndPassword } from '../../services/auth/firebase';
+import { PAGES } from '../../router/pages';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUpModal() {
   const [email, setEmail] = useState('');
@@ -7,9 +10,18 @@ export default function SignUpModal() {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const register = () => {
+    if (!name) alert('Please enter name');
+    registerWithEmailAndPassword(name, email, password);
+    navigate(PAGES.WELCOME.path);
+  };
   const handlerSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    register();
+
     // eslint-disable-next-line no-console
     console.log({
       name: formData.get('first name'),

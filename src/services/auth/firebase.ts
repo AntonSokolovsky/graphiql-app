@@ -12,13 +12,24 @@ const dbPaths = {
   users: 'users',
   uid: 'uid',
 };
+//TODO: remove or find out how to make this data secret
+// const apiKey: string = import.meta.env.VITE_API_KEY || '';
+// const authDomain = import.meta.env.VITE_AUTH_DOMAIN || '';
+// const projectId = import.meta.env.VITE_PROJECT_ID || '';
+// const storageBucket = import.meta.env.VITE_STORAGE_BUCKET || '';
+// const messagingSenderId = import.meta.env.VITE_MESSAGING_SENDER_ID || '';
+// const appId = import.meta.env.VITE_APP_ID || '';
 
-const apiKey = process.env.API_KEY || '';
-const authDomain = process.env.AUTH_DOMAIN || '';
-const projectId = process.env.PROJECT_ID || '';
-const storageBucket = process.env.STORAGE_BUCKET || '';
-const messagingSenderId = process.env.MESSAGING_SENDER_ID || '';
-const appId = process.env.APP_ID || '';
+//According to Vite's documentation https://vitejs.dev/guide/env-and-mode
+//Unlike a CRA app that has opaque access to Node’s process.env variables,
+//in Vite an environment variable isn’t really an environment variable:
+// its value will always be included in the production bundle that is sent to the client.
+const apiKey = 'AIzaSyAltm1V5tqCz-UUtgDrnEXMHfmcy4zqm4c';
+const authDomain = 'graphiql-app-a040a.firebaseapp.com';
+const projectId = 'graphiql-app-a040a';
+const storageBucket = 'graphiql-app-a040a.appspot.com';
+const messagingSenderId = '226221838512';
+const appId = '1:226221838512:web:c62782bc957bab2793ab75';
 
 const firebaseConfig = {
   apiKey,
