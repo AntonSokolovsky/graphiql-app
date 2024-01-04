@@ -1,16 +1,21 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
-import { FormEvent, useState } from 'react';
-import { registerWithEmailAndPassword } from '../../services/auth/firebase';
+import { FormEvent, useEffect, useState } from 'react';
+import {
+  auth,
+  registerWithEmailAndPassword,
+} from '../../services/auth/firebase';
 import { PAGES } from '../../router/pages';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../../store/store';
 
 export default function SignUpModal() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+  const setUser = useAuthStore((state) => state.setUser);
 
   const register = () => {
     if (!name) alert('Please enter name');
@@ -40,6 +45,13 @@ export default function SignUpModal() {
     );
   const regExpoFirstName = /^[A-ZА-Я]/.test(name);
   const regExpoLastName = /^[A-ZА-Я]/.test(lastName);
+
+  useEffect(() => {
+    if (auth.currentUser) {
+      setUser(auth.currentUser);
+      navigate(PAGES.MAIN.path, { replace: true });
+    }
+  }, [navigate, setUser]);
 
   return (
     <Container component="main" maxWidth="md">
