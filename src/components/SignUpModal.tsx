@@ -1,16 +1,6 @@
 import * as React from 'react';
-import {
-  Box,
-  Button,
-  Container,
-  TextField,
-  ThemeProvider,
-  Typography,
-  createTheme,
-} from '@mui/material';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { FormEvent, useState } from 'react';
-
-const defaultTheme = createTheme();
 
 export default function SignUpModal() {
   const [email, setEmail] = useState('');
@@ -41,79 +31,77 @@ export default function SignUpModal() {
   const regExpoLastName = /^[A-ZА-Я]/.test(lastName);
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="md">
+    <Container component="main" maxWidth="md">
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '10px',
+          alignItems: 'center',
+          gap: '10px',
+        }}
+      >
+        <Typography component="h1">Sign Up</Typography>
         <Box
+          component="form"
+          onSubmit={handlerSubmit}
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            padding: '10px',
-            alignItems: 'center',
             gap: '10px',
           }}
         >
-          <Typography component="h1">Sign Up</Typography>
-          <Box
-            component="form"
-            onSubmit={handlerSubmit}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-            }}
+          <TextField
+            id="first name"
+            name="first name"
+            label="First Name"
+            type="text"
+            required
+            onChange={(e) => setName(e.target.value)}
+            helperText="Enter your name"
+            error={!(name === '') && !regExpoFirstName}
+          />
+          <TextField
+            id="last name"
+            name="last name"
+            label="Last Name"
+            type="text"
+            required
+            onChange={(e) => setLastName(e.target.value)}
+            helperText="Enter your last name"
+            error={!(lastName === '') && !regExpoLastName}
+          />
+          <TextField
+            id="email"
+            name="email"
+            label="Email"
+            type="email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            helperText="Enter your email address"
+            error={!(email === '') && !regExpoEmail}
+          />
+          <TextField
+            id="password"
+            name="password"
+            label="Password"
+            type={showPassword ? 'text' : 'password'}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            helperText="The password contains at least 8 characters, one capital letter, one number and one special character"
+            error={!(password === '') && !regExpoPassword}
+          />
+          <Button variant="contained" type="submit">
+            Sign Up
+          </Button>
+          <Button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
           >
-            <TextField
-              id="first name"
-              name="first name"
-              label="First Name"
-              type="text"
-              required
-              onChange={(e) => setName(e.target.value)}
-              helperText="Enter your name"
-              error={!(name === '') && !regExpoFirstName}
-            />
-            <TextField
-              id="last name"
-              name="last name"
-              label="Last Name"
-              type="text"
-              required
-              onChange={(e) => setLastName(e.target.value)}
-              helperText="Enter your last name"
-              error={!(lastName === '') && !regExpoLastName}
-            />
-            <TextField
-              id="email"
-              name="email"
-              label="Email"
-              type="email"
-              required
-              onChange={(e) => setEmail(e.target.value)}
-              helperText="Enter your email address"
-              error={!(email === '') && !regExpoEmail}
-            />
-            <TextField
-              id="password"
-              name="password"
-              label="Password"
-              type={showPassword ? 'text' : 'password'}
-              required
-              onChange={(e) => setPassword(e.target.value)}
-              helperText="The password contains at least 8 characters, one capital letter, one number and one special character"
-              error={!(password === '') && !regExpoPassword}
-            />
-            <Button variant="contained" type="submit">
-              Sign Up
-            </Button>
-            <Button
-              type="button"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              Show password
-            </Button>
-          </Box>
+            Show password
+          </Button>
         </Box>
-      </Container>
-    </ThemeProvider>
+      </Box>
+    </Container>
   );
 }

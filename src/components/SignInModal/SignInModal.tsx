@@ -3,7 +3,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { auth, logInWithEmailAndPassword } from '../../services/auth/firebase';
 import { useNavigate } from 'react-router-dom';
 import { PAGES } from '../../router/pages';
-import { useAuthStore } from '../../store/store';
+import { useAuthStore } from '../../store/useAuthStore';
 
 export default function SignInModal() {
   const [email, setEmail] = useState('');
