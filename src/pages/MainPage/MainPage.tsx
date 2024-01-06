@@ -43,8 +43,6 @@ export default function MainPage() {
               <Grid container spacing={1}>
                 <Grid item xs={12}>
                   <Paper className={styles.panel}>
-                    {/* <Paper>1</Paper>
-                    <Paper>2</Paper> */}
                     <Grid container spacing={1}>
                       <Grid item xs={12} className={styles.Editor}>
                         <Editor />
@@ -59,7 +57,9 @@ export default function MainPage() {
             </Grid>
             <Grid item xs={isShowDocs ? 4 : 6}>
               <Paper className={`${styles.JsonViewer} ${styles.panel}`}>
-                <Editor mode="readonly" />
+                <Editor mode="readonly" language="json">
+                  {'{"json": "true"}'}
+                </Editor>
               </Paper>
             </Grid>
           </Grid>
