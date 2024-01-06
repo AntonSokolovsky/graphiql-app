@@ -1,10 +1,13 @@
-import { ListItem, ListItemButton } from '@mui/material';
+import { Button, ListItem } from '@mui/material';
 import { IPropsNavItem } from './NavItem.type';
+import { NavLink } from 'react-router-dom';
 
 export default function NavItem({ name, path }: IPropsNavItem) {
   return (
     <ListItem>
-      <ListItemButton href={path}>{name}</ListItemButton>
+      <NavLink to={path}>
+        <Button variant="contained">{name}</Button>
+      </NavLink>
     </ListItem>
   );
 }

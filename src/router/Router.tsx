@@ -32,14 +32,14 @@ export const router = createBrowserRouter([
         path: `${PAGES.SIGN_UP.path}`,
         element: <SignIn action={ACTION.SIGN_UP} />,
       },
+      {
+        path: `${PAGES.MAIN.path}`,
+        element: (
+          <PrivateRoute>
+            <MainPage />
+          </PrivateRoute>
+        ),
+      },
     ],
-  },
-  {
-    path: `${PAGES.MAIN.path}`,
-    element: (
-      <PrivateRoute>
-        <MainPage />
-      </PrivateRoute>
-    ),
   },
 ]);

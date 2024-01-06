@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { TPrivateRouteProps } from './PrivateRoute.type';
+import { useAuth } from '../../hooks/useAuth';
+import { PAGES } from '../../router/pages';
 
 export function PrivateRoute({ children }: TPrivateRouteProps) {
-  // Add your authentication logic here
-  const [isAuthenticated] = useState(false);
-  return isAuthenticated ? children : <Navigate to="/" replace />;
+  const { isAuth } = useAuth();
+  return isAuth ? children : <Navigate to={PAGES.SIGN_IN.path} replace />;
 }
