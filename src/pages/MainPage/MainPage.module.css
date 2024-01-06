@@ -1,15 +1,15 @@
 .panel {
-    padding: 5px;
+  padding: 5px;
 }
 
 .Editor {
-    height: 60vh;
+  height: 60vh;
 }
 
 .VariablesEditor {
-    height: 20vh;
+  height: 20vh;
 }
 
 .JsonViewer {
-    height: 80vh;
+  height: 80vh;
 }

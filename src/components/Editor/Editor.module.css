@@ -1,33 +1,33 @@
 .editorContainer {
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
 }
 
 .editorTextArea {
-    width: 100%;
-    overflow-y: auto;
-    overflow-x: auto;
-    word-wrap: unset;
-    resize: none;
-    font-size: 1em;
-    line-height: 1;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+  word-wrap: unset;
+  resize: none;
+  font-size: 1em;
+  line-height: 1;
 }
 
 .lines {
-    padding-top: 4px;
-    background-color: lightgrey;
-    font-size: normal;
-    line-height: 1;
-    width: 40px;
-    padding-right: 2px;
-    text-align: right;
+  padding-top: 4px;
+  background-color: lightgrey;
+  font-size: normal;
+  line-height: 1;
+  width: 40px;
+  padding-right: 2px;
+  text-align: right;
 }
 
 .line {
-    line-height: 1;
-    font-size: 1em;
-    color: gray;
+  line-height: 1;
+  font-size: 1em;
+  color: gray;
 }
