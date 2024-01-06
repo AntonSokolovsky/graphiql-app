@@ -1,4 +1,12 @@
-import { AppBar, Box, Button, IconButton, List, Toolbar } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  Button,
+  IconButton,
+  List,
+  Toolbar,
+  useTheme,
+} from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import NavIconQL from '../../assets/svg/graphQl-icon';
 import {
@@ -6,19 +14,23 @@ import {
   LightModeOutlined,
   LogoutOutlined,
 } from '@mui/icons-material';
-import { useState } from 'react';
 import { PAGES } from '../../router/pages';
 import NavItem from '../NavItem/NavItem';
 import { logout } from '../../services/auth/firebase';
-import { useAuthStore } from '../../store/store';
+import { useAuthStore } from '../../store/useAuthStore';
+import { useThemeModeStore } from '../../store/useThemeModeStore';
 
 function NavBar() {
-  const [darkMode, setDarkMode] = useState(false);
+  const theme = useTheme().palette.mode;
+  const [mode, setMode] = useThemeModeStore((state) => [
+    state.mode,
+    state.setMode,
+  ]);
   const isAuth = useAuthStore((state) => state.isAuth);
   const removeUser = useAuthStore((state) => state.removeUser);
 
   function handleModeChange() {
-    setDarkMode((prev) => !prev);
+    setMode(mode === 'light' ? 'dark' : 'light');
   }
   function handleLogout() {
     removeUser();
@@ -58,7 +70,7 @@ function NavBar() {
           </IconButton>
         )}
         <IconButton onClick={handleModeChange}>
-          {darkMode ? <LightModeOutlined /> : <DarkModeOutlined />}
+          {theme === 'dark' ? <LightModeOutlined /> : <DarkModeOutlined />}
         </IconButton>
       </Toolbar>
     </AppBar>
