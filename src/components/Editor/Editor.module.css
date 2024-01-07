@@ -10,6 +10,7 @@
   width: 100%;
   overflow-y: auto;
   overflow-x: auto;
+  text-wrap: nowrap;
   word-wrap: unset;
   resize: none;
   font-size: 1em;

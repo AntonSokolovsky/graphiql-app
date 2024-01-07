@@ -1,18 +1,20 @@
 import { Box } from '@mui/material';
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 import parse from '../../services/graphql-parser';
 import styles from './Editor.module.css';
 
 type TEditorProps = {
   mode?: string;
   language?: string;
-  children?: string;
+  defaultData?: string;
+  setOuterQuery?: (query: string) => void;
 };
 
 const Editor: FC<TEditorProps> = ({
   mode,
   language = 'json',
-  children,
+  defaultData,
+  setOuterQuery,
 }): React.JSX.Element => {
   const countLines = (value: string) => {
     if (value) {
@@ -21,15 +23,7 @@ const Editor: FC<TEditorProps> = ({
     return 0;
   };
 
-  const [lines, setLines] = useState(children ? countLines(children) : 0);
-
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    const element = event.currentTarget as HTMLTextAreaElement;
-    const value = element.value;
-    setLines(countLines(value));
-  };
-
-  const prettify = (value: string, language: string) => {
+  const prettify = useCallback((value: string, language: string) => {
     let prettified = '';
     if (language === 'json') {
       try {
@@ -38,15 +32,33 @@ const Editor: FC<TEditorProps> = ({
         prettified = value;
       }
     } else if (language === 'graphql') {
-      // TODO: implement prettifier
       prettified = parse(value);
     }
     if (prettified) {
       setTimeout(() => setLines(countLines(prettified)), 1);
     }
     return prettified;
+  }, []);
+
+  const [lines, setLines] = useState(defaultData ? countLines(defaultData) : 0);
+  const [query, setQuery] = useState(
+    defaultData ? prettify(defaultData, language) : ''
+  );
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const element = event.currentTarget as HTMLTextAreaElement;
+    const value = element.value;
+    setLines(countLines(value));
+    setQuery(value);
+    if (setOuterQuery) {
+      setOuterQuery(value);
+    }
   };
 
+  useEffect(() => {
+    if (defaultData) {
+      setQuery(prettify(defaultData, language));
+    }
+  }, [defaultData, language, prettify]);
   return (
     <>
       <div className={styles.editorContainer}>
@@ -63,7 +75,7 @@ const Editor: FC<TEditorProps> = ({
           className={styles.editorTextArea}
           onChange={handleChange}
           readOnly={mode === 'readonly' ? true : false}
-          defaultValue={children ? prettify(children, language) : ''}
+          value={query}
         ></textarea>
       </div>
     </>
