@@ -24,16 +24,7 @@ export default function SignUpModal() {
   };
   const handlerSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
     register();
-
-    // eslint-disable-next-line no-console
-    console.log({
-      name: formData.get('first name'),
-      surname: formData.get('last name'),
-      email: formData.get('email'),
-      password: formData.get('password'),
-    });
   };
 
   const regExpoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(
@@ -54,7 +45,7 @@ export default function SignUpModal() {
   }, [navigate, setUser]);
 
   return (
-    <Container component="main" maxWidth="md">
+    <Container component="main" maxWidth="md" data-testid={'signUp'}>
       <Box
         sx={{
           display: 'flex',

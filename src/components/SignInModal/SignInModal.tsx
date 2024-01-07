@@ -26,12 +26,6 @@ export default function SignInModal() {
         navigate(PAGES.MAIN.path, { replace: true });
       }
     });
-    const formData = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: formData.get('email'),
-      password: formData.get('password'),
-    });
   };
 
   const regExpoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(
@@ -43,7 +37,7 @@ export default function SignInModal() {
     );
 
   return (
-    <Container component="section" maxWidth="xs">
+    <Container component="section" maxWidth="xs" data-testid={'sign'}>
       <Box
         sx={{
           display: 'flex',
