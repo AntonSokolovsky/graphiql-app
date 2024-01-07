@@ -1,18 +1,21 @@
 export const PAGES = {
   WELCOME: {
-    name: 'welcome',
+    name: {
+      en: 'welcome',
+      ru: 'О нас',
+    },
     path: '/welcome',
   },
   SIGN_IN: {
-    name: 'sign in',
+    name: { en: 'sign in', ru: 'вход' },
     path: '/sign-in',
   },
   SIGN_UP: {
-    name: 'sign up',
+    name: { en: 'sign up', ru: 'регистрация' },
     path: '/sign-up',
   },
   MAIN: {
-    name: 'home',
+    name: { en: 'home', ru: 'главная' },
     path: '/main',
     isRequireAuth: true,
   },

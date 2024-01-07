@@ -10,14 +10,6 @@ export default function SignUpModal() {
   const [showPassword, setShowPassword] = useState(false);
   const handlerSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      name: formData.get('first name'),
-      surname: formData.get('last name'),
-      email: formData.get('email'),
-      password: formData.get('password'),
-    });
   };
 
   const regExpoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(
