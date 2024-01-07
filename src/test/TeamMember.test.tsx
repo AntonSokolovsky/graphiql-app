@@ -10,10 +10,11 @@ import { IPersonTeam } from '../interface';
 describe('memeberName', () => {
   test('Ensure that the WelcomeContent component renders', async () => {
     const data: IPersonTeam = {
-      name: 'test',
+      id: 1,
+      name: { en: 'test', ru: 'test' },
       image: 'test',
-      stack: 'test',
-      text: 'test',
+      stack: { en: 'test', ru: 'test' },
+      text: { en: 'test', ru: 'test' },
       gitLink: 'test',
     };
 
