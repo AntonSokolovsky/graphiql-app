@@ -3,18 +3,19 @@ import { useState } from 'react';
 import styles from './MainPage.module.css';
 import Editor from '../../components/Editor/Editor';
 import send from '../../services/send';
+import DialogUrl from '../../components/DialogUrl/DialogUrl';
 
-const DEFAULT_QUERY = `query Query {
+const DEFAULT_QUERY = `# Try to add 'director' to query params
+
+query Query {
   film (id: "ZmlsbXM6MQ==") {
     title
-    director
   }
 }`;
 const DEFAULT_RESPONSE = `{
   "data": {
     "film": {
-      "title": "A New Hope",
-      "director": "George Lucas"
+      "title": "A New Hope"
     }
   }
 }`;
@@ -24,7 +25,7 @@ export default function MainPage() {
   const [isShowDocs, setIsShowDocs] = useState(false);
 
   const [query, setQuery] = useState(DEFAULT_QUERY);
-  const [url /*setUrl*/] = useState(DEFAULT_URL);
+  const [url, setUrl] = useState(DEFAULT_URL);
   const [response, setResponse] = useState(DEFAULT_RESPONSE);
 
   const handleSendQuery = async () => {
@@ -75,9 +76,7 @@ export default function MainPage() {
                 <Button variant="outlined" disabled>
                   Prettify query
                 </Button>
-                <Button variant="outlined" disabled>
-                  Set up API URL
-                </Button>
+                <DialogUrl outerUrl={url} setOuterUrl={setUrl} />
               </Paper>
             </Grid>
           </Grid>
