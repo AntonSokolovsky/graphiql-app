@@ -45,7 +45,7 @@ const DialogUrl: FC<TDialogUrlProps> = ({ outerUrl, setOuterUrl }) => {
           <TextField
             autoFocus
             margin="dense"
-            id="name"
+            data-testid="urlInput"
             fullWidth
             variant="standard"
             value={url}

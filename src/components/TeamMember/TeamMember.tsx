@@ -32,7 +32,7 @@ function TeamMember({ data: { image, name, stack, text, gitLink } }: Props) {
           sx={{ height: 200, width: 200 }}
         />
         <CardContent>
-          <Typography variant="h6" component={'h3'}>
+          <Typography variant="h6" component={'h3'} data-testid="memeberName">
             {name}
           </Typography>
           <Typography variant="body1">{stack}</Typography>
