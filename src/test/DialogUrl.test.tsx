@@ -5,7 +5,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import DialogUrl from '../components/DialogUrl/DialogUrl';
 import '@testing-library/jest-dom';
-const DEFAULT_URL = `https://swapi-graphql.netlify.app/.netlify/functions/index`;
 
 describe('DialogUrl', () => {
   test('Ensure that the DialogUrl button component renders', async () => {

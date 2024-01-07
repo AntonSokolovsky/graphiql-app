@@ -51,11 +51,11 @@ function NavBar() {
         <NavIconQL />
         <List sx={{ display: 'flex', gap: '10px' }}>
           <NavItem
-            name={PAGES.MAIN.name.toUpperCase()}
+            name={PAGES.MAIN.name[language].toUpperCase()}
             path={PAGES.MAIN.path}
           />
           <NavItem
-            name={PAGES.WELCOME.name.toUpperCase()}
+            name={PAGES.WELCOME.name[language].toUpperCase()}
             path={PAGES.WELCOME.path}
           />
         </List>
@@ -63,12 +63,12 @@ function NavBar() {
           <Box sx={{ display: 'flex', gap: '10px' }}>
             <NavLink to={PAGES.SIGN_IN.path}>
               <Button variant="contained">
-                {PAGES.SIGN_IN.name.toUpperCase()}
+                {PAGES.SIGN_IN.name[language].toUpperCase()}
               </Button>
             </NavLink>
             <NavLink to={PAGES.SIGN_UP.path}>
               <Button variant="contained">
-                {PAGES.SIGN_UP.name.toUpperCase()}
+                {PAGES.SIGN_UP.name[language].toUpperCase()}
               </Button>
             </NavLink>
           </Box>

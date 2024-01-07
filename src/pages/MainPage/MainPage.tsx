@@ -4,6 +4,8 @@ import styles from './MainPage.module.css';
 import Editor from '../../components/Editor/Editor';
 import send from '../../services/send';
 import DialogUrl from '../../components/DialogUrl/DialogUrl';
+import { useLanguageStore } from '../../store/useLanguageStore';
+import { TEXT } from '../../constants/localization';
 
 const DEFAULT_QUERY = `# Try to add 'director' to query params
 
@@ -22,6 +24,7 @@ const DEFAULT_RESPONSE = `{
 const DEFAULT_URL = `https://swapi-graphql.netlify.app/.netlify/functions/index`;
 
 export default function MainPage() {
+  const { language } = useLanguageStore();
   const [isShowDocs, setIsShowDocs] = useState(false);
   const [isShowVariables, setIsShowVariables] = useState(true);
 
@@ -50,7 +53,7 @@ export default function MainPage() {
                       onChange={(event) => setIsShowDocs(event.target.checked)}
                     />
                   }
-                  label="Show docs"
+                  label={TEXT.mainPage.showDocs[language]}
                 />
                 <FormControlLabel
                   control={
@@ -61,7 +64,7 @@ export default function MainPage() {
                       }
                     />
                   }
-                  label="Show variables"
+                  label={TEXT.mainPage.showVariables[language]}
                 />
                 <FormControlLabel
                   control={
@@ -71,13 +74,13 @@ export default function MainPage() {
                       onChange={(event) => setIsShowDocs(event.target.checked)}
                     />
                   }
-                  label="Show headers"
+                  label={TEXT.mainPage.showHeaders[language]}
                 />
                 <Button variant="outlined" onClick={handleSendQuery}>
-                  Send query
+                  {TEXT.mainPage.sendQuery[language]}
                 </Button>
                 <Button variant="outlined" disabled>
-                  Prettify query
+                  {TEXT.mainPage.prettifyQuery[language]}
                 </Button>
                 <DialogUrl outerUrl={url} setOuterUrl={setUrl} />
               </Paper>
@@ -90,7 +93,9 @@ export default function MainPage() {
             {/* Docs */}
             {isShowDocs && (
               <Grid item xs={2}>
-                <Paper className={styles.panel}>Docs</Paper>
+                <Paper className={styles.panel}>
+                  {TEXT.mainPage.docs[language]}
+                </Paper>
               </Grid>
             )}
             {/* Query editor & variables/header editors */}
@@ -116,7 +121,7 @@ export default function MainPage() {
                       {/* Variables/header editors */}
                       {isShowVariables && (
                         <Grid item xs={12} className={styles.VariablesEditor}>
-                          Variables
+                          {TEXT.mainPage.variables[language]}
                           <Editor
                             defaultData={variables}
                             setOuterQuery={setVariables}

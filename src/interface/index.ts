@@ -1,7 +1,8 @@
 export interface IPersonTeam {
-  name: string;
+  id: number;
+  name: { en: string; ru: string };
   image: string;
-  stack: string;
-  text: string;
+  stack: { en: string; ru: string };
+  text: { en: string; ru: string };
   gitLink: string;
 }
