@@ -1,0 +1,19 @@
+.panel {
+  padding: 5px;
+}
+
+.Editor {
+  height: 60vh;
+}
+
+.EditorFull {
+  height: 80vh;
+}
+
+.VariablesEditor {
+  height: 16vh;
+}
+
+.JsonViewer {
+  height: 80vh;
+}
