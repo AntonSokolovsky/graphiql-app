@@ -6,8 +6,12 @@
   height: 60vh;
 }
 
+.EditorFull {
+  height: 80vh;
+}
+
 .VariablesEditor {
-  height: 20vh;
+  height: 16vh;
 }
 
 .JsonViewer {

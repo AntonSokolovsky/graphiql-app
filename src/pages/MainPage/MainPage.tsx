@@ -23,13 +23,15 @@ const DEFAULT_URL = `https://swapi-graphql.netlify.app/.netlify/functions/index`
 
 export default function MainPage() {
   const [isShowDocs, setIsShowDocs] = useState(false);
+  const [isShowVariables, setIsShowVariables] = useState(true);
 
   const [query, setQuery] = useState(DEFAULT_QUERY);
   const [url, setUrl] = useState(DEFAULT_URL);
   const [response, setResponse] = useState(DEFAULT_RESPONSE);
+  const [variables, setVariables] = useState('');
 
   const handleSendQuery = async () => {
-    const response = await send(query, url);
+    const response = await send(query, variables, url);
     setResponse(JSON.stringify(response));
   };
 
@@ -53,9 +55,10 @@ export default function MainPage() {
                 <FormControlLabel
                   control={
                     <Switch
-                      checked={isShowDocs}
-                      disabled
-                      onChange={(event) => setIsShowDocs(event.target.checked)}
+                      checked={isShowVariables}
+                      onChange={(event) =>
+                        setIsShowVariables(event.target.checked)
+                      }
                     />
                   }
                   label="Show variables"
@@ -84,31 +87,48 @@ export default function MainPage() {
         {/* Pans */}
         <Grid item xs={12}>
           <Grid container spacing={1}>
+            {/* Docs */}
             {isShowDocs && (
               <Grid item xs={2}>
                 <Paper className={styles.panel}>Docs</Paper>
               </Grid>
             )}
+            {/* Query editor & variables/header editors */}
             <Grid item xs={6}>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
                   <Paper className={styles.panel}>
                     <Grid container spacing={1}>
-                      <Grid item xs={12} className={styles.Editor}>
+                      {/* Query editor */}
+                      <Grid
+                        item
+                        xs={12}
+                        className={
+                          isShowVariables ? styles.Editor : styles.EditorFull
+                        }
+                      >
                         <Editor
                           language="graphql"
                           setOuterQuery={setQuery}
                           defaultData={query}
                         />
                       </Grid>
-                      <Grid item xs={12} className={styles.VariablesEditor}>
-                        <Editor />
-                      </Grid>
+                      {/* Variables/header editors */}
+                      {isShowVariables && (
+                        <Grid item xs={12} className={styles.VariablesEditor}>
+                          Variables
+                          <Editor
+                            defaultData={variables}
+                            setOuterQuery={setVariables}
+                          />
+                        </Grid>
+                      )}
                     </Grid>
                   </Paper>
                 </Grid>
               </Grid>
             </Grid>
+            {/* Response view */}
             <Grid item xs={isShowDocs ? 4 : 6}>
               <Paper className={`${styles.JsonViewer} ${styles.panel}`}>
                 <Editor
