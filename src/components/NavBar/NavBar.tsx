@@ -4,6 +4,7 @@ import {
   Button,
   IconButton,
   List,
+  SelectChangeEvent,
   Toolbar,
   useTheme,
 } from '@mui/material';
@@ -19,9 +20,12 @@ import NavItem from '../NavItem/NavItem';
 import { logout } from '../../services/auth/firebase';
 import { useAuthStore } from '../../store/useAuthStore';
 import { useThemeModeStore } from '../../store/useThemeModeStore';
+import LanguageBar from '../LanguageBar/LanguageBar';
+import { useLanguageStore, LanguageList } from '../../store/useLanguageStore';
 
 function NavBar() {
   const theme = useTheme().palette.mode;
+  const { language, setLanguage } = useLanguageStore();
   const [mode, setMode] = useThemeModeStore((state) => [
     state.mode,
     state.setMode,
@@ -35,6 +39,10 @@ function NavBar() {
   function handleLogout() {
     removeUser();
     logout();
+  }
+
+  function handleChangeLanguage(event: SelectChangeEvent) {
+    setLanguage(event.target.value as LanguageList);
   }
 
   return (
@@ -72,6 +80,7 @@ function NavBar() {
         <IconButton onClick={handleModeChange}>
           {theme === 'dark' ? <LightModeOutlined /> : <DarkModeOutlined />}
         </IconButton>
+        <LanguageBar language={language} handleChange={handleChangeLanguage} />
       </Toolbar>
     </AppBar>
   );
