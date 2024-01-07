@@ -2,9 +2,35 @@ import { Button, FormControlLabel, Grid, Paper, Switch } from '@mui/material';
 import { useState } from 'react';
 import styles from './MainPage.module.css';
 import Editor from '../../components/Editor/Editor';
+import send from '../../services/send';
+
+const DEFAULT_QUERY = `query Query {
+  film (id: "ZmlsbXM6MQ==") {
+    title
+    director
+  }
+}`;
+const DEFAULT_RESPONSE = `{
+  "data": {
+    "film": {
+      "title": "A New Hope",
+      "director": "George Lucas"
+    }
+  }
+}`;
+const DEFAULT_URL = `https://swapi-graphql.netlify.app/.netlify/functions/index`;
 
 export default function MainPage() {
   const [isShowDocs, setIsShowDocs] = useState(false);
+
+  const [query, setQuery] = useState(DEFAULT_QUERY);
+  const [url /*setUrl*/] = useState(DEFAULT_URL);
+  const [response, setResponse] = useState(DEFAULT_RESPONSE);
+
+  const handleSendQuery = async () => {
+    const response = await send(query, url);
+    setResponse(JSON.stringify(response));
+  };
 
   return (
     <>
@@ -23,7 +49,32 @@ export default function MainPage() {
                   }
                   label="Show docs"
                 />
-                <Button variant="outlined">Prettify query</Button>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={isShowDocs}
+                      disabled
+                      onChange={(event) => setIsShowDocs(event.target.checked)}
+                    />
+                  }
+                  label="Show variables"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={isShowDocs}
+                      disabled
+                      onChange={(event) => setIsShowDocs(event.target.checked)}
+                    />
+                  }
+                  label="Show headers"
+                />
+                <Button variant="outlined" onClick={handleSendQuery}>
+                  Send query
+                </Button>
+                <Button variant="outlined" disabled>
+                  Prettify query
+                </Button>
                 <Button variant="outlined" disabled>
                   Set up API URL
                 </Button>
@@ -45,7 +96,11 @@ export default function MainPage() {
                   <Paper className={styles.panel}>
                     <Grid container spacing={1}>
                       <Grid item xs={12} className={styles.Editor}>
-                        <Editor />
+                        <Editor
+                          language="graphql"
+                          setOuterQuery={setQuery}
+                          defaultData={query}
+                        />
                       </Grid>
                       <Grid item xs={12} className={styles.VariablesEditor}>
                         <Editor />
@@ -57,9 +112,11 @@ export default function MainPage() {
             </Grid>
             <Grid item xs={isShowDocs ? 4 : 6}>
               <Paper className={`${styles.JsonViewer} ${styles.panel}`}>
-                <Editor mode="readonly" language="json">
-                  {'{"json": "true"}'}
-                </Editor>
+                <Editor
+                  mode="readonly"
+                  language="json"
+                  defaultData={response}
+                />
               </Paper>
             </Grid>
           </Grid>
