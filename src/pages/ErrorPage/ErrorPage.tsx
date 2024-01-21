@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import {
   isRouteErrorResponse,
   useNavigate,
@@ -11,20 +11,18 @@ export default function ErrorPage() {
 
   if (isRouteErrorResponse(error)) {
     return (
-      <div id="error-page">
-        <h1>Oops!</h1>
-        <p>Sorry, an unexpected error has occurred.</p>
-        <p>
-          <i>
-            {error.status}: {error.statusText}
-          </i>
-        </p>
-        <p>
+      <Box id="error-page">
+        <Typography variant="h1">Oops!</Typography>
+        <Typography>Sorry, an unexpected error has occurred.</Typography>
+        <Typography variant="h5">
+          {error.status}: {error.statusText}
+        </Typography>
+        <Typography>
           <Button variant="contained" onClick={() => navigate(-1)}>
             Go back
           </Button>
-        </p>
-      </div>
+        </Typography>
+      </Box>
     );
   } else {
     return null;

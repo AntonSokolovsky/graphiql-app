@@ -1,7 +1,6 @@
-import { Box } from '@mui/material';
+import { Box, TextField, Theme, useTheme } from '@mui/material';
 import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 import parse from '../../services/graphql-parser';
-import styles from './Editor.module.css';
 
 type TEditorProps = {
   mode?: string;
@@ -16,6 +15,7 @@ const Editor: FC<TEditorProps> = ({
   defaultData,
   setOuterQuery,
 }): React.JSX.Element => {
+  const theme: Theme = useTheme();
   const countLines = (value: string) => {
     if (value) {
       return value.split('\n').length;
@@ -61,25 +61,50 @@ const Editor: FC<TEditorProps> = ({
   }, [defaultData, language, prettify]);
   return (
     <>
-      <div className={styles.editorContainer}>
-        <Box className={styles.lines}>
+      <Box
+        sx={{
+          display: 'flex',
+          height: '100%',
+        }}
+      >
+        <Box
+          bgcolor={theme.palette.action.disabled}
+          padding={'0.5rem 0.2rem 0 0'}
+          width={'2rem'}
+          lineHeight={1.445}
+          textAlign={'right'}
+        >
           {lines > 0 &&
             Array.from({ length: lines }, (_, i) => (
-              <div key={i + 1} className={styles.line}>
+              <Box
+                key={i + 1}
+                sx={{
+                  color: theme.palette.text.secondary,
+                }}
+              >
                 {i + 1}
-              </div>
+              </Box>
             ))}
         </Box>
 
-        <textarea
-          className={styles.editorTextArea}
+        <TextField
+          variant="outlined"
+          sx={{
+            bgcolor: theme.palette.divider,
+            border: 'none',
+            '& fieldset': { border: 'none' },
+          }}
+          size="small"
+          minRows={lines}
+          fullWidth
+          multiline
           onChange={handleChange}
-          readOnly={mode === 'readonly' ? true : false}
+          inputProps={{ readOnly: mode === 'readonly' ? true : false }}
           value={query}
-        ></textarea>
-      </div>
+        ></TextField>
+      </Box>
     </>
   );
 };
 
-export default Editor;
+export { Editor };

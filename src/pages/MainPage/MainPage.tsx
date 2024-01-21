@@ -1,7 +1,6 @@
 import { Button, FormControlLabel, Grid, Paper, Switch } from '@mui/material';
 import { useState } from 'react';
-import styles from './MainPage.module.css';
-import Editor from '../../components/Editor/Editor';
+import { Editor } from '../../components/Editor';
 import send from '../../services/send';
 import DialogUrl from '../../components/DialogUrl/DialogUrl';
 import { useLanguageStore } from '../../store/useLanguageStore';
@@ -45,7 +44,7 @@ export default function MainPage() {
         <Grid item xs={12}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              <Paper className={styles.panel}>
+              <Paper sx={{ padding: '0.5rem' }}>
                 <FormControlLabel
                   control={
                     <Switch
@@ -93,7 +92,7 @@ export default function MainPage() {
             {/* Docs */}
             {isShowDocs && (
               <Grid item xs={2}>
-                <Paper className={styles.panel}>
+                <Paper sx={{ padding: '0.5rem' }}>
                   {TEXT.mainPage.docs[language]}
                 </Paper>
               </Grid>
@@ -102,14 +101,16 @@ export default function MainPage() {
             <Grid item xs={6}>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <Paper className={styles.panel}>
+                  <Paper sx={{ padding: '0.5rem' }}>
                     <Grid container spacing={1}>
                       {/* Query editor */}
                       <Grid
                         item
                         xs={12}
-                        className={
-                          isShowVariables ? styles.Editor : styles.EditorFull
+                        sx={
+                          isShowVariables
+                            ? { height: '60vh' }
+                            : { height: '80vh' }
                         }
                       >
                         <Editor
@@ -120,7 +121,7 @@ export default function MainPage() {
                       </Grid>
                       {/* Variables/header editors */}
                       {isShowVariables && (
-                        <Grid item xs={12} className={styles.VariablesEditor}>
+                        <Grid item xs={12} sx={{ height: '16vh' }}>
                           {TEXT.mainPage.variables[language]}
                           <Editor
                             defaultData={variables}
@@ -135,7 +136,7 @@ export default function MainPage() {
             </Grid>
             {/* Response view */}
             <Grid item xs={isShowDocs ? 4 : 6}>
-              <Paper className={`${styles.JsonViewer} ${styles.panel}`}>
+              <Paper sx={{ padding: '0.5rem', height: '80vh' }}>
                 <Editor
                   mode="readonly"
                   language="json"
